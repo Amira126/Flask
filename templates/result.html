@@ -4,6 +4,15 @@
     </h2>
 
     ><body>
-        The Output is {{ result }}
+    <table width="100%" border="2">
+        
+        {% for key, value in result.items() %}
+            <tr>
+                <th>{{ key }}</th> 
+                <th>{{ value }}</th>
+                
+            </tr>  
+        {% endfor %} 
+    </table>
     </body>
 </html>

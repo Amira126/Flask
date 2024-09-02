@@ -6,28 +6,15 @@ app = Flask(__name__)
 def welcome():
     return render_template('index.html')
 
-@app.route('/success/<int:score>')
-def success(score):
+@app.route('/check/<int:score>')
+def check(score):
     res=""
-    if score >50:
-        res = "Pass"
+    if score>=60:
+        res="Pass"
     else:
-        res = "Fail"
-    return render_template('result.html', result=res)
-
-@app.route('/fail/<int:score>')
-def fail(score):
-    return f"The student has failed with a score of {score}"
-
-
-@app.route('/results/<int:marks>')
-def results(marks):
-    res=""
-    if marks < 50:
-        res="fail"
-    else:
-        res="success"
-    return redirect(url_for(res, score=marks))
+        res="Fail"
+    out={'Score': score, 'Result': res}
+    return render_template('result.html', result=out)
 
 #Result checker html page
 @app.route('/submit', methods=['POST', 'GET'])
@@ -40,13 +27,7 @@ def submit():
         data_science = float(request.form['Data Science'])
         total_score = (Science + Maths + C + data_science)/4
 
-    res = ""
-    if total_score >=50:
-        res="success"
-    else:
-        res="fail"
-    
-    return redirect(url_for(res, score=total_score))
+    return redirect(url_for('check', score=total_score))
 
 if __name__ == "__main__":
     app.run(debug=True)

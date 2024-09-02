@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
+<script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}"></script>
+</head>
     <body>
         <h1>
             Results Page
@@ -16,7 +20,7 @@
             <input type="text" id="Data Science" name="Data Science" value="0"><br>
             <input type="submit" value="Submit">
         </form>
-        
+
         <p>If you click the "Submit" button, the form-data will be sent to a page called "/submit".</p>
 
     </body>
